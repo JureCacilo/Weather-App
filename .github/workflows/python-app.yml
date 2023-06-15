@@ -29,7 +29,7 @@ jobs:
         python3.9 -m venv env
         source env/bin/activate
         echo "VIRTUAL ENV:" $VIRTUAL_ENV
-        python3.9 pip install -r requirements.txt
+        python3.9 -m pip install -r requirements.txt
     - name: Test with pytest
       run: |
         pip install pytest
