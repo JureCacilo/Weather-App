@@ -39,5 +39,6 @@ jobs:
     - uses: actions/setup-python@v2
     - name: Pytest
       run: |
-        echo $PATH
+        . .env/bin/activate
+        pytest
 
