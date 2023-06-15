@@ -64,3 +64,6 @@ class MainController:
 
     def show_view(self):
         self._view.showMaximized()
+
+    def get_weather_model(self):
+        return self._weather_model
