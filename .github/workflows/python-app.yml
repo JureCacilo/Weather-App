@@ -40,5 +40,5 @@ jobs:
     - name: Pytest
       run: |
         source env/bin/activate
-        echo "VIRTUAL ENV:" $VIRTUAL_ENV
+        echo $PATH
 
