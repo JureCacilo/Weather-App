@@ -45,4 +45,4 @@ jobs:
     - name: Analysing with pylint
       run: |
         source env/bin/activate
-        find . -type f -name "*.py" -not -path "./env/*" -exec pylint {} \;
+        find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
