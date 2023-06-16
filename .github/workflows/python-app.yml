@@ -27,12 +27,13 @@ jobs:
       run: |
         pip install --upgrade pip
         python3.9 -m venv env
+        echo "PATH before activation" $PATH
         source env/bin/activate
+        echo "PATH after activation" $PATH
         echo "VIRTUAL ENV:" $VIRTUAL_ENV
         python3.9 -m pip install -r requirements.txt
 
     - name: Pytest
       run: |
-        . .venv/bin/activate
-        pytest
+        echo "Path in new process" $PATH
 
