@@ -25,8 +25,8 @@ jobs:
         python-version: 3.6
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
         python3.6 -m venv env
+        pip install --upgrade pip
         echo "PATH before activation" $PATH
         source env/bin/activate
         echo "PATH after activation" $PATH
