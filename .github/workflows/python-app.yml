@@ -36,5 +36,6 @@ jobs:
     - name: Pytest
       run: |
         echo "Path in new process" $PATH
-        ls /env
+        ls
+        ls env
 
