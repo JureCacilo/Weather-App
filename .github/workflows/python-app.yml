@@ -26,15 +26,11 @@ jobs:
     - name: Install dependencies
       run: |
         python3.6 -m venv env
-        pip install --upgrade pip
-        echo "PATH before activation" $PATH
         source env/bin/activate
-        echo "PATH after activation" $PATH
-        echo "VIRTUAL ENV:" $VIRTUAL_ENV
+        pip install --upgrade pip
         python3.6 -m pip install -r requirements.txt
 
     - name: Pytest
       run: |
-        echo "Path in new process" $PATH
         source env/bin/activate
         pytest
