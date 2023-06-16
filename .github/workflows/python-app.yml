@@ -33,6 +33,6 @@ jobs:
 
     - name: Pytest
       run: |
-        . .env/bin/activate
+        . .venv/bin/activate
         pytest
 
