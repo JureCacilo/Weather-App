@@ -45,4 +45,4 @@ jobs:
     - name: Analysing with pylint
       run: |
         source env/bin/activate
-        pylint --ignore=env
+        pylint ./model
