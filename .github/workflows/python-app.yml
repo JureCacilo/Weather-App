@@ -45,4 +45,4 @@ jobs:
     - name: Analysing with pylint
       run: |
         source env/bin/activate
-        pylint ./model
+        find . -type f -name "*.py" -not -path "./env/*" | xargs pylint
