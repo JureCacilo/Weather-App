@@ -16,7 +16,8 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
-
+    env:
+      DISPLAY: ':99.0'
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.6
@@ -29,6 +30,12 @@ jobs:
         source env/bin/activate
         pip install --upgrade pip
         python3.6 -m pip install -r requirements.txt
+
+    - uses: tlambert03/setup-qt-libs@v1
+    - name: build "display"
+      run: |
+        source env/bin/activate
+        /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX
 
     - name: Pytest
       run: |
