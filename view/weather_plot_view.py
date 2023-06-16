@@ -6,7 +6,7 @@ details: This module contains the plot View class, with the 3 plot widgets
 from typing import List
 from PyQt5 import QtWidgets
 import pyqtgraph as pg
-from weather_app.utils.utils import TimeAxisItem
+from utils.utils import TimeAxisItem
 
 
 class PlotView:

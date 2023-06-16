@@ -7,7 +7,7 @@ details: This module contains the Weather Parser logic
 from typing import List, Tuple
 import xml.etree.ElementTree as ET
 import urllib.request
-from weather_app.utils.utils import strip_weather_time
+from utils.utils import strip_weather_time
 
 
 

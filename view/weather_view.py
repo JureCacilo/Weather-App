@@ -8,7 +8,7 @@ The Comobobx Widget, refresh button widget, and the three PlotWigets with the Co
 from typing import List
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-from weather_app.view.weather_plot_view import PlotView
+from view.weather_plot_view import PlotView
 
 class MainWindow(QtWidgets.QMainWindow):
     """
