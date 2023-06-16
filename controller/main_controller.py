@@ -6,8 +6,8 @@ details: This module contains the main controller of the App
 
 from typing import List
 from controller.weather_controller import WeatherController
-from weather_app.model.weather_model import WeatherModel
-from weather_app.view.weather_view import MainWindow
+from model.weather_model import WeatherModel
+from view.weather_view import MainWindow
 
 class MainController:
     """

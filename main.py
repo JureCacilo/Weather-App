@@ -7,7 +7,7 @@ details: Main file
 
 import sys
 from PyQt5.QtWidgets import QApplication
-from weather_app.controller.main_controller import MainController
+from controller.main_controller import MainController
 
 cities = ["Ljubljana", "Lesce", "Boršt pri Gorenji vasi", "Brnik", "Logatec", "Vrhnika"]
 
