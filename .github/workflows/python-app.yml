@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  Weather-app-pipeline:
 
     runs-on: ubuntu-20.04
     env:
