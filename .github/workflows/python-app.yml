@@ -36,4 +36,6 @@ jobs:
     - name: Pytest
       run: |
         echo "Path in new process" $PATH
+        . .App/env/bin/activate
+        pytest
 
