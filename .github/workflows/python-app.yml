@@ -44,4 +44,5 @@ jobs:
 
     - name: Analysing with pylint
       run: |
+        source env/bin/activate
         pylint `ls -R|grep .py$|xargs`
