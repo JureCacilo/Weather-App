@@ -15,23 +15,23 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.9
+    - name: Set up Python 3.6
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: 3.6
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        python3.9 -m venv env
+        python3.6 -m venv env
         echo "PATH before activation" $PATH
         source env/bin/activate
         echo "PATH after activation" $PATH
         echo "VIRTUAL ENV:" $VIRTUAL_ENV
-        python3.9 -m pip install -r requirements.txt
+        python3.6 -m pip install -r requirements.txt
 
     - name: Pytest
       run: |
