@@ -37,7 +37,11 @@ jobs:
         source env/bin/activate
         /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX
 
-    - name: Pytest
+    - name: Testing with Pytest
       run: |
         source env/bin/activate
         pytest
+
+    - name: Analysing with pylint
+      run: |
+        pylint `ls -R|grep .py$|xargs`
