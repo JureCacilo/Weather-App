@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  Build_test_lint:
+  Build_test_lint_package_publish:
 
     runs-on: ubuntu-20.04
     env:
@@ -23,13 +23,13 @@ jobs:
     - name: Set up Python 3.6
       uses: actions/setup-python@v2
       with:
-        python-version: 3.6
+        python-version: 3.6.8
     - name: Install dependencies
       run: |
-        python3.6 -m venv env
+        python3.6.8 -m venv env
         source env/bin/activate
         pip install --upgrade pip
-        python3.6 -m pip install -r requirements.txt
+        python3.6.8 -m pip install -r requirements.txt
 
     - uses: tlambert03/setup-qt-libs@v1
     - name: build "display"
