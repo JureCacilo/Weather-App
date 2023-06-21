@@ -3,16 +3,13 @@
 
 name: Python application
 
-on:
-  push:
-    tags:
-      - '*'
+on: [push]
 
 permissions:
   contents: read
 
 jobs:
-  Build_test_lint_package_publish:
+  Build_test_lint:
 
     runs-on: ubuntu-20.04
     env:
@@ -45,23 +42,3 @@ jobs:
       run: |
         source env/bin/activate
         find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
-
-    - name: Extract tag name
-      id: tag
-      run: echo ::set-output name=TAG_NAME::$(echo $GITHUB_REF | cut -d / -f 3)
-    - name: Update version in setup.py
-      run: >-
-        sed -i "s/{{VERSION_PLACEHOLDER}}/${{ steps.tag.outputs.TAG_NAME }}/g" setup.py
-
-    - name: Build package
-      run: |
-        source env/bin/activate
-        python -m pip install wheel
-        python setup.py sdist bdist_wheel
-
-    - name: Publish to TestPyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        repository_url: https://test.pypi.org/legacy/
