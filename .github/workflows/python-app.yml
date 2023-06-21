@@ -42,7 +42,7 @@ jobs:
       run: |
         source env/bin/activate
         python -m pip install wheel
-        python -m setup.py sdist bdist_wheel
+        python -m setup sdist bdist_wheel
 
     - name: Publish to TestPyPI
       uses: pypa/gh-action-pypi-publish@release/v1
