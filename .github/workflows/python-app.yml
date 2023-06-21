@@ -5,9 +5,8 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+      - '*'
 
 permissions:
   contents: read
@@ -31,27 +30,19 @@ jobs:
         pip install --upgrade pip
         python3.6 -m pip install -r requirements.txt
 
-    - uses: tlambert03/setup-qt-libs@v1
-    - name: build "display"
-      run: |
-        source env/bin/activate
-        /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX
 
-    - name: Testing with Pytest
-      run: |
-        source env/bin/activate
-        pytest
-
-    - name: Analysing with pylint
-      run: |
-        source env/bin/activate
-        find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
+    - name: Extract tag name
+      id: tag
+      run: echo ::set-output name=TAG_NAME::$(echo $GITHUB_REF | cut -d / -f 3)
+    - name: Update version in setup.py
+      run: >-
+        sed -i "s/{{VERSION_PLACEHOLDER}}/${{ steps.tag.outputs.TAG_NAME }}/g" setup.py
 
     - name: Build package
       run: |
         source env/bin/activate
-        python -m pip install --upgrade build
-        python -m build
+        python -m pip install wheel
+        python -m setup.py sdist bdist
 
     - name: Publish to TestPyPI
       uses: pypa/gh-action-pypi-publish@release/v1
