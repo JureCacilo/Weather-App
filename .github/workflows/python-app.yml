@@ -46,3 +46,8 @@ jobs:
       run: |
         source env/bin/activate
         find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
+
+    - name: Build package
+      run: |
+        source env/bin/activate
+        python -m build
