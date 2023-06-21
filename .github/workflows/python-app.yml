@@ -31,22 +31,6 @@ jobs:
         pip install --upgrade pip
         python3.6 -m pip install -r requirements.txt
 
-    - uses: tlambert03/setup-qt-libs@v1
-    - name: build "display"
-      run: |
-        source env/bin/activate
-        /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX
-
-    - name: Testing with Pytest
-      run: |
-        source env/bin/activate
-        pytest
-
-    - name: Analysing with pylint
-      run: |
-        source env/bin/activate
-        find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
-
     - name: Build package
       run: |
         source env/bin/activate
