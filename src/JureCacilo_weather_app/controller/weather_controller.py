@@ -6,8 +6,8 @@ that invokes the XmlParser when fetching new data from ARSO.
 """
 
 from typing import List, Dict
-from model.weather_model_item import WeatherModelItem
-from xml_parser.weather_parser import WeatherParser
+from JureCacilo_weather_app.model.weather_model_item import WeatherModelItem
+from JureCacilo_weather_app.xml_parser.weather_parser import WeatherParser
 
 
 citiesToXmlUrl = {

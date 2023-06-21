@@ -1,8 +1,6 @@
 import pytest
 from PyQt5.QtWidgets import QApplication
 from controller.main_controller import MainController
-from model.weather_model import WeatherModel
-from view.weather_view import MainWindow
 
 cities = ["Ljubljana", "Lesce"]
 

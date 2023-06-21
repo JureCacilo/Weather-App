@@ -7,7 +7,7 @@ and WeatherModelItems as values
 """
 
 from typing import Dict
-from model.weather_model_item import WeatherModelItem
+from JureCacilo_weather_app.model.weather_model_item import WeatherModelItem
 
 class WeatherModel:
     """

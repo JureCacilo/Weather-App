@@ -5,9 +5,9 @@ details: This module contains the main controller of the App
 """
 
 from typing import List
-from controller.weather_controller import WeatherController
-from model.weather_model import WeatherModel
-from view.weather_view import MainWindow
+from JureCacilo_weather_app.controller.weather_controller import WeatherController
+from JureCacilo_weather_app.model.weather_model import WeatherModel
+from JureCacilo_weather_app.view.weather_view import MainWindow
 
 class MainController:
     """
