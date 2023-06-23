@@ -1,10 +1,22 @@
 pipeline {
-    agent { docker { image 'python:3.10.7-alpine' } }
+    agent any
     stages {
-        stage('build') {
+        stage('checkout') {
             steps {
-                sh 'python --version'
+                checkout scm
             }
+        }
+        stage('Build') {
+            steps {
+                echo "building..."
+                bat script: "python -c \"print('Deluje')\""
+            }
+        stage('Test') {
+            steps {
+                echo "Testing"
+            }
+        }
+
         }
     }
 }
