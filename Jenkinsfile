@@ -16,7 +16,6 @@ pipeline {
                 echo "Testing"
             }
         }
-
         }
     }
 }
