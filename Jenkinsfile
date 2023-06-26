@@ -11,10 +11,10 @@ pipeline {
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install -r requirements.txt"
             }
         }
-        stage('Test') {
+        stage('Scan repoisotry') {
             steps {
                 echo "Testing"
-                bat script: "${workspace}/env/Scripts/python.exe -m pip install --upgrade pip"
+                bat script: "${workspace}/env/Scripts/python.exe branch_activity_report.py"
             }
         }
     }
