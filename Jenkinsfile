@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo "Linting ...."
 
-                bat script: "${workspace}/env/Scripts/python.exe -m pylint --version"
+                bat script: "${workspace}/env/Scripts/python.exe -m pylint ${workspace}/src/"
 
             }
         }
