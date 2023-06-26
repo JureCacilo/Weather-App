@@ -3,10 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "echo 'building...'"
-                checkout scm
+                echo "building..."
                 create_venv "env"
-                run_in_venv "env", "pip install --upgrade pip"
+                run_in_venv "env" "pip install --upgrade pip"
                 //run_in_venv "env", "pip install -r requirements.txt"
             }
         }
@@ -18,9 +17,10 @@ pipeline {
     }
 }
 def create_venv(String name) {
-    sh "virtualenv ${name}"
+     virtualenv=${name}
 }
 
 def run_in_venv(String environment, String script) {
-    sh "source ${environment}/bin/activate && " + script
+    bash: script "source ${environment}/bin/activate &&"
+    bash: script script
 }
