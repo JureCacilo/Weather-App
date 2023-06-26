@@ -17,8 +17,6 @@ pipeline {
         }
     }
 }
-
-
 def create_venv(String name) {
     sh "virtualenv ${name}"
 }
