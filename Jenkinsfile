@@ -29,8 +29,7 @@ pipeline {
         stage('Lint') {
             steps {
                 echo "Linting ...."
-                find . -type f -name "*.py" -not -path "./env/*" -not -path "./tests/*" -exec pylint {} \;
-                //bat script: "${workspace}/env/Scripts/python.exe -m pylint"
+                bat script: "${workspace}/env/Scripts/python.exe pylint.py"
 
             }
         }
