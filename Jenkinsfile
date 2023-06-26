@@ -14,7 +14,7 @@ pipeline {
         stage('Scan repository') {
             steps {
                 echo "Scanning"
-                bat script: "${workspace}/env/Scripts/python.exe branch_activity_report.py --gitea_url https://rls-git/ --owner jureCacilo --repository Weather-App --days 10"
+                bat script: "${workspace}/env/Scripts/python.exe branch_activity_report.py --gitea_url https://rls-git --owner jureCacilo --repository Weather-App --days 10"
             }
         }
         /*
