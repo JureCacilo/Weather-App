@@ -7,7 +7,7 @@ pipeline {
                 checkout scm
                 create_venv "env"
                 run_in_venv "env", "pip install --upgrade pip"
-                run_in_venv "env", "pip install -r requirements.txt"
+                //run_in_venv "env", "pip install -r requirements.txt"
             }
         }
         stage('Test') {
