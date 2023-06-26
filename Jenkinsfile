@@ -7,11 +7,11 @@ pipeline {
                 echo "building..."
                 bat script: "python -c \"print('Deluje')\""
             }
+        }
         stage('Test') {
             steps {
                 echo "Testing"
             }
-        }
         }
     }
 }
