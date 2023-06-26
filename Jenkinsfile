@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing"
-                ls -d */
+                echo */
             }
         }
     }
