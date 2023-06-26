@@ -22,7 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing ..."
-                bat script: "${workspace}/env/Scripts/python.exe pytest"
+                bat script: "${workspace}/env/Scripts/python.exe -m pytest"
             }
         }
 
