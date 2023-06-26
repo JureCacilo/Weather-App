@@ -4,8 +4,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo "building..."
-                create_venv "env"
-                run_in_venv "env" "pip install --upgrade pip"
+                bat: script "python -m venv env"
+                echo "Path ${env.PATH}"
+                //bat: script ""
                 //run_in_venv "env", "pip install -r requirements.txt"
             }
         }
