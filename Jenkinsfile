@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing"
-                echo */
+                bat script: "${workspace}/env/Scripts/python.exe -m pip install --upgrade pip"
             }
         }
     }
