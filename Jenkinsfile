@@ -7,6 +7,7 @@ pipeline {
                 echo "building..."
                 bat script: "python -m venv env"
                 echo "Path ${env.PATH}"
+                bat script: "${workspace}/env/Scripts/python.exe pip install -r requirements.txt"
                 //bat: script ""
                 //run_in_venv "env", "pip install -r requirements.txt"
             }
