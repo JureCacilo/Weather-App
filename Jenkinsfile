@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "building..."
-                bat script: "python -c \"print('Deluje')\""
+                sh "echo 'building...'"
+                create_venv "env"
+                run_in_venv "env", "pip install --upgrade pip"
+                run_in_venv "env", "pip install -r requirements.txt"
             }
         }
         stage('Test') {
@@ -16,3 +18,10 @@ pipeline {
     }
 }
 
+def create_venv(String name) {
+    sh "virtualenv ${name}"
+}
+
+def run_in_venv(String environment, String script) {
+    sh "source ${environment}/bin/activate && " + script
+}
