@@ -9,7 +9,6 @@ pipeline {
                 echo "Path ${env.PATH}"
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install --upgrade pip"
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install -r requirements.txt"
-                //bat: script ""
             }
         }
         stage('Test') {
