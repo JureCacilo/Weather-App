@@ -23,9 +23,6 @@ def create_venv(String name) {
      virtualenv=${name}
 }
 
-
-
-
 def run_in_venv(String environment, String script) {
     bash: script "source ${environment}/bin/activate &&"
     bash: script script
