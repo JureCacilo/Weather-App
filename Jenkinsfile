@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo "Linting ...."
 
-                bat script: "${workspace}/env/Scripts/python.exe -m pylint ${workspace}/src/"
+                bat script: "${workspace}/env/Scripts/python.exe -m pylint ${workspace}/src/JureCacilo_weather_app/controller"
 
             }
         }
