@@ -1,10 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        GITHUB_CREDENTIALS = credentials("1177a959-db47-4665-8105-e050514cbe1a")
+    }
+
     stages {
         stage('Build') {
             steps {
                 echo "Building..."
+                echo "User ${GITHUB_CREDENTIALS_USR}"
+                echo "Pass ${GITHUB_CREDENTIALS_PSW}"
                 bat script: "python -m venv env"
                 echo "Path ${env.PATH}"
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install --upgrade pip"
