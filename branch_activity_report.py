@@ -27,7 +27,8 @@ def process_arguments():
     parser = argparse.ArgumentParser(
         description="Script that outputs inactive branches based on number of inactive days for the given repository url"
     )
-    parser.add_argument("--gitea_url", type=str, help="URL of the gitea server")
+    parser.add_argument("--github_url", type=str, help="URL of the gitea server")
+    parser.add_argument("--token", type=str, help="Github access token")
     parser.add_argument("--owner", type=str, help="Owner of the repository")
     parser.add_argument("--repository", type=str, help="Name of the repository")
     parser.add_argument("--days", type=int, help="Number of days")
@@ -46,12 +47,16 @@ class Gitea:
     - store all the repository branches in the Repository model
     """
 
-    def __init__(self, gitea_server: str, owner: str, repository: str, verify: bool = False):
+    def __init__(self, gitea_server: str, token: str, owner: str, repository: str, verify: bool = False):
         self.gitea = gitea_server
+        self._token = token
         self._owner = owner
         self._repository = repository
         self.requests = requests.Session()
-        self._headers = {"Content-type": "application/json"}
+        self._headers = {
+            "Content-type": "application/json",
+            "Authorization": f"Bearer {self._token}"
+        }
 
         # Manage SSL certification verification
         self.requests.verify = verify
@@ -93,7 +98,6 @@ class Gitea:
 
 
 class Commit:
-
     def __init__(self, url: str, author: str, message: str, timestamp: datetime):
         self._url = url
         self._author = author
@@ -166,13 +170,13 @@ def main():
     try:
         args = process_arguments()
 
-        gitea_url = args.gitea_url
+        github_url = args.github_url
         owner = args.owner
         repository = args.repository
         inactive_days = args.days
 
         gitea = Gitea(
-            gitea_server=gitea_url, owner=owner, repository=repository, verify=False
+            gitea_server=github_url, owner=owner, repository=repository, verify=False
         )
         results = gitea.get_branches()
 
