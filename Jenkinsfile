@@ -1,3 +1,4 @@
+def git_tag = null
 pipeline {
     agent any
 
@@ -15,6 +16,12 @@ pipeline {
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install -r requirements.txt"
             }
         }
+        stage("Debug") {
+            steps {
+                input(message: "Debug Mode: Pausing for inspection", ok: 'Continue')
+            }
+        }
+
         stage('Scan repository') {
             steps {
                 echo "Scanning..."
@@ -38,5 +45,18 @@ pipeline {
             }
         }
 
+        stage('If tagged') {
+            when {
+                expression {
+                    return git_tag;
+                }
+            }
+            steps {
+                echo "Packaging ..."
+                bat script: "${workspace}/env/Scripts/python.exe -m pip install wheel"
+                bat script: "${workspace}/env/Scripts/python.exe setup.py sdist bdist_wheel"
+                echo "Publish to TestPyPi...."
+            }
+        }
     }
 }
