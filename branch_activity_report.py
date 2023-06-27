@@ -131,7 +131,7 @@ class Branch:
 
     def is_active(self, time_inactive: timedelta) -> bool:
         """
-        Function that returns bool if branch has been last time_inactive
+        Function that returns bool if branch has been inactive since time time_inactive
         :param time_inactive:
         :return: bool
         """
