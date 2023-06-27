@@ -18,7 +18,6 @@ import argparse
 from datetime import datetime, timedelta
 import logging
 
-import urllib3
 import requests
 from tabulate import tabulate
 
@@ -45,7 +44,7 @@ class Gitea:
     - store all the repository branches in the Repository model
     """
 
-    def __init__(self, gitea_server: str, token: str, owner: str, repository: str, verify: bool = False):
+    def __init__(self, gitea_server: str, token: str, owner: str, repository: str):
         self.gitea = gitea_server
         self._token = token
         self._owner = owner
@@ -55,11 +54,6 @@ class Gitea:
             "Content-type": "application/json",
             "Authorization": f"Bearer {self._token}"
         }
-
-        # Manage SSL certification verification
-        self.requests.verify = verify
-        if not verify:
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     def _get_url(self, endpoint: str):
         url = f"{self.gitea}/repos/{endpoint}"
@@ -175,7 +169,7 @@ def main():
         inactive_days = args.days
 
         gitea = Gitea(
-            gitea_server=github_url, token=token , owner=owner, repository=repository, verify=False
+            gitea_server=github_url, token=token , owner=owner, repository=repository,
         )
         results = gitea.get_branches()
 

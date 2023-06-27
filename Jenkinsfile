@@ -9,8 +9,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
-                echo "User ${GITHUB_CREDENTIALS_USR}"
-                echo "Pass ${GITHUB_CREDENTIALS_PSW}"
                 bat script: "python -m venv env"
                 echo "Path ${env.PATH}"
                 bat script: "${workspace}/env/Scripts/python.exe -m pip install --upgrade pip"
