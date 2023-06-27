@@ -19,8 +19,8 @@ pipeline {
         }
         stage('Scan repository') {
             steps {
-                echo "Scanning"
-                bat script: "${workspace}/env/Scripts/python.exe branch_activity_report.py --github_url https://api.github.com --token ${GITHUB_CREDENTIALS_PSW} --owner jureCacilo --repository Weather-App --days 10"
+                echo "Scanning..."
+                bat script: "${workspace}/env/Scripts/python.exe branch_activity_report.py --github_url https://api.github.com --token 1234 --owner ${GITHUB_CREDENTIALS_USR} --repository Weather-App --days 10"
                 echo "-----------------------------------------------------------------------------------------------------------"
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage('Lint') {
             steps {
                 echo "Linting ...."
-                bat script: "${workspace}/env/Scripts/python.exe -m pylint ${workspace}/src/* || exit 0"
+                bat script: "${workspace}/env/Scripts/python.exe -m pylint ${workspace}/src/ || exit 0"
 
             }
         }
