@@ -33,8 +33,6 @@ def process_arguments():
     parser.add_argument("--repository", type=str, help="Name of the repository")
     parser.add_argument("--days", type=int, help="Number of days")
 
-    # TODO: add token
-
     args = parser.parse_args()
     return args
 
@@ -171,12 +169,13 @@ def main():
         args = process_arguments()
 
         github_url = args.github_url
+        token = args.token
         owner = args.owner
         repository = args.repository
         inactive_days = args.days
 
         gitea = Gitea(
-            gitea_server=github_url, owner=owner, repository=repository, verify=False
+            gitea_server=github_url, token=token , owner=owner, repository=repository, verify=False
         )
         results = gitea.get_branches()
 
