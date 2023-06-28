@@ -18,7 +18,13 @@ pipeline {
         }
         stage("Debug") {
             steps {
-                input(message: "Debug Mode: Pausing for inspection", ok: 'Continue')
+            while (true) {
+                def cmd = input message: 'What to run:', parameters: [string(defaultValue: '', description: '', name: 'cmd')]
+                try {
+                    print Eval.x(this,cmd)
+                } catch (e) {
+                print e
+                }
             }
         }
 
@@ -45,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('If tagged') {
+        stage('Deploy if taged') {
             when {
                 expression {
                     return git_tag;
